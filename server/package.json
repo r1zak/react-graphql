@@ -1,0 +1,19 @@
+{
+  "name": "graphql-server",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "start-dev": "nodemon src/index.js",
+    "debug": "node --inspect src/index.js",
+    "lint": "npx eslint --ext .js .",
+    "lint:fix": "npx eslint --fix --ext .js .",
+    "prisma": "prisma db push && prisma migrate"
+  },
+  "dependencies": {
+    "@graphql-yoga/node": "^2.13.4",
+    "graphql": "^16.5.0"
+  },
+  "devDependencies": {
+    "prisma": "^4.1.0"
+  }
+}

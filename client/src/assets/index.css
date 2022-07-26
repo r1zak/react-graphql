@@ -1,0 +1,115 @@
+body {
+  margin: 0;
+  font-family: "JetBrains Mono", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #111111;
+  color: whitesmoke;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::placeholder {
+  font-family: inherit;
+}
+
+input,
+button {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background: inherit;
+  outline: none;
+}
+
+input {
+  border: 1px solid whitesmoke;
+  padding: 5px 26px 5px 5px;
+}
+
+button {
+  border: 1px solid whitesmoke;
+  padding: 5px;
+  cursor: pointer;
+}
+
+ul,
+li {
+  list-style: none;
+  padding: 0;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.wrapper {
+  max-width: 1044px;
+  padding: 0 10px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.messages {
+  width: 100%;
+}
+
+.messages__list-item {
+  padding: 20px 0;
+}
+
+.messages__list-item--header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.messages__list-item--footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.reaction {
+  display: flex;
+  flex-direction: row;
+}
+
+.like,
+.dislike {
+  cursor: pointer;
+}
+
+.dislike {
+  margin-left: 10px;
+}
+
+.field {
+  display: flex;
+  margin-left: auto;
+}
+
+.field button {
+  padding: 10px;
+}
