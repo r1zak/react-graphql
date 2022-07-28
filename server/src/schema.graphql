@@ -1,0 +1,36 @@
+type Query {
+  version: String!
+  messages: [Message!]!
+}
+
+input MessageInput {
+  title: String!
+  username: String!
+}
+
+input ReplyInput {
+  text: String!
+  messageId: Int!
+}
+
+type Mutation {
+  createMessage(message: MessageInput!): Message!
+  createReply(reply: ReplyInput): Reply!
+}
+
+type Subscription {
+  newMessage: Message
+}
+
+type Message {
+  id: Int!
+  title: String!
+  username: String!
+  replies: [Reply!]!
+}
+
+type Reply {
+  id: Int!
+  text: String!
+  message: Message!
+}

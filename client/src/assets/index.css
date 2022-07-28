@@ -89,6 +89,7 @@ code {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 20px;
 }
 
 .reaction {
@@ -112,4 +113,17 @@ code {
 
 .field button {
   padding: 10px;
+}
+
+.replies-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.replies__list-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  border: 1px solid whitesmoke;
+  padding: 5px;
 }

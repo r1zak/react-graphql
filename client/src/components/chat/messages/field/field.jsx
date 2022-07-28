@@ -1,18 +1,31 @@
-import { useRef } from "react";
+import { CREATE_MESSAGE, GET_MESSAGES } from "../../../../queries";
+import { useMutation } from "@apollo/client";
+import { useState } from "react";
 
-const Field = ({ onAddMessage }) => {
-  const message = useRef(null);
+const Field = () => {
+  const [message, setMessage] = useState("");
+
+  const [createMessage, { loading, error }] = useMutation(CREATE_MESSAGE, {
+    refetchQueries: [{ query: GET_MESSAGES }],
+    onCompleted: () => console.log("message send"),
+  });
 
   const handleMessage = (e) => {
     e.preventDefault();
-    onAddMessage(message.current.value);
-    message.current.value = "";
+    createMessage({
+      variables: {
+        message: { title: message, username: "iii" },
+      },
+    });
   };
+
+  if (loading) return "Submitting...";
+  if (error) return `Submission error! ${error.message}`;
 
   return (
     <form className="field" onSubmit={handleMessage}>
       <input
-        ref={message}
+        onChange={(e) => setMessage(e.target.value)}
         type="text"
         placeholder="Enter your message here..."
       />

@@ -1,27 +1,43 @@
 import Messages from "./messages/messages";
 import Field from "./messages/field/field";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { GET_MESSAGES, NEW_MESSAGE } from "../../queries";
+import { useQuery } from "@apollo/client";
 
 const Chat = () => {
-  const [messages, setMessages] = useState([]);
+  const { loading, error, data, subscribeToMore } = useQuery(GET_MESSAGES);
 
-  const handleAddMessage = (text) => {
-    const message = {
-      id: Date.now(),
-      text,
-      likes: 0,
-      dislikes: 0,
-    };
+  useEffect(() => {
+    subscribeToMore({
+      document: NEW_MESSAGE,
+      updateQuery: (prev, { subscriptionData }) => {
+        if (!subscriptionData.data) {
+          return prev;
+        }
 
-    const newMessages = [...messages, message];
+        const { newMessage } = subscriptionData.data;
 
-    setMessages(newMessages);
-  };
+        return {
+          ...prev,
+          messages: {
+            ...prev.messages,
+            messagesList: [
+              { ...newMessage, replies: [] },
+              ...prev.messages.messagesList,
+            ],
+          },
+        };
+      },
+    });
+  }, [subscribeToMore]);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :</p>;
 
   return (
     <div className="chat">
-      <Messages messages={messages} />
-      <Field onAddMessage={handleAddMessage} />
+      <Messages messages={data.messages} />
+      <Field />
     </div>
   );
 };
